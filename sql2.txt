@@ -1,0 +1,62 @@
+create table employee
+(
+    emp_id number(3),
+    emp_name varchar(20),
+    emp_gender char ,
+    emp_dept varchar(25),
+    emp_desig varchar(30),
+    basic_pay number(9,2)
+   
+    
+);
+
+alter table employee add constraint cons_pk_employee primary key(emp_id);
+alter table employee add constraint cons_chk_emp_gender check (emp_gender in ('M','F'));
+
+
+
+insert into employee values(101,'Faruk','M','Procurement dept','Python Developer',100000);
+insert into employee values(102,'Chandru','M','Hr Dept','Associate',120000);
+insert into employee values(102,'Roja','F','Finance Dept','Busniess Analysis',20000);
+insert into employee values(103,'Punith','M','Administration ','sales Executive',200000);
+insert into employee values(104,'Rani','F','Finance Dept','Busniess Analysis',110000);
+insert into employee values(105,'Punith Singh','M','Marketing Dept','Web Developer',150000);
+
+
+alter table employee add(HRA number(10));
+
+
+update employee set HRA=Basic_pay*0.25;
+alter table employee add(Tax number(8,2));
+
+update employee set tax=Basic_pay*0.1;
+alter table employee add(Net_pay number(15,2));
+update employee set net_pay=Basic_pay+HRA-tax;
+
+UPDATE employee SET emp_dept = 'Administration' WHERE emp_id = 103;
+
+
+update employee set basic_pay=200000+10000 where emp_id=103;
+UPDATE employee SET emp_dept = 'Administration' WHERE emp_id = 104;
+
+SELECT * FROM employee where emp_dept='Administration';
+
+SELECT * FROM employee WHERE basic_pay > 50000;
+
+insert into employee values(106,' Singh','M','','Data Anaysis',40000,500,4000,35000);
+
+delete from employee where emp_id=106;
+
+SELECT * FROM employee WHERE tax > 10000;
+
+SELECT * FROM employee where emp_gender='F';
+
+select *from employee;
+
+
+
+
+
+
+
+
